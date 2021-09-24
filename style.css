@@ -4,3 +4,6 @@
   bottom: 20px;
   right: 20px;
 }
+#taskList li h3 {
+  transition: 0.5s;
+}
