@@ -11,7 +11,13 @@ class app {
     this.lists = array;
   }
   save() {
-    localStorage.setItem("todoApp", this);
+    localStorage.setItem("todoApp", JSON.stringify(this));
+  }
+  load() {
+    let data = JSON.parse(localStorage.getItem("todoApp"));
+    if (data != null) {
+      this.lists = data.lists;
+    }
   }
 }
 class toDoList {
@@ -45,6 +51,12 @@ class task {
 }
 //Declare App
 let myApp = new app();
+myApp.load();
+console.log(myApp.lists[0]);
+if (myApp.lists[0] != undefined) {
+  updateListDOM();
+  updateTaskDOM(0);
+}
 
 //New List button and event listener
 let newListButton = document.getElementById("newListButton");
@@ -52,6 +64,13 @@ newListButton.addEventListener("click", () => {
   addList(document.getElementById("newListName").value);
 });
 
+//Add task button and event listener
+let newTaskButton = document.getElementById("addTaskButton");
+newTaskButton.addEventListener("click", () => {
+  addTask(0, document.getElementById("newTask").value);
+});
+
+//Add Lists
 function addList(listName) {
   myApp.addList(new toDoList(listName));
   updateListDOM(listName);
@@ -69,12 +88,17 @@ function updateListDOM() {
     dropdownList.appendChild(li);
   });
 }
+//Add tasks
 function addTask(listIndex, taskName) {
-  myApp.lists[listIndex].addTask("taskName");
+  myApp.lists[listIndex].addTask(new task(taskName));
+  updateTaskDOM(listIndex);
+  myApp.save();
 }
 function updateTaskDOM(listIndex) {
+  let taskList = document.getElementById("taskList");
+
+  taskList.innerText = "";
   myApp.lists[listIndex].tasks.forEach((t) => {
-    let taskList = document.getElementById("taskList");
     let li = document.createElement("li");
     li.appendChild(document.createTextNode(t.taskName));
     console.log(t);
@@ -91,4 +115,4 @@ function tester() {
   updateListDOM();
   updateTaskDOM(0);
 }
-tester();
+// tester();

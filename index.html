@@ -16,7 +16,7 @@
     <title>Todo</title>
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark bg-dark mb-1">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img
@@ -55,22 +55,32 @@
               class="dropdown-menu"
               aria-labelledby="dropdownMenuButton1"
               id="dropdownList"
-            >
-              <li><a class="dropdown-item" href="#">Action</a></li>
-            </ul>
+            ></ul>
           </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h2 id="listName"></h2>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col">
+          <ul class="list-group" id="taskList"></ul>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <h2 id="listName"></h2>
+          <input
+            type="text"
+            class="form-control"
+            id="newTask"
+            placeholder="Task Name"
+          />
         </div>
-      </div>
-      <div class="row">
-        <ul class="list-group" id="taskList"></ul>
-      </div>
-      <div class="row">
-        <button class="btn btn-success">Add Task</button>
+        <div class="col">
+          <button class="btn btn-success" id="addTaskButton">Add Task</button>
+        </div>
       </div>
     </div>
     <!-- Modal -->
@@ -85,12 +95,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add New List</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <button type="button" class="btn-close" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form>
@@ -106,7 +111,12 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="newListButton">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="newListButton"
+              data-bs-dismiss="modal"
+            >
               Add List
             </button>
           </div>
