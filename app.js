@@ -103,19 +103,22 @@ function addTask(listIndex, taskName) {
 }
 function updateTaskDOM(listIndex) {
   let taskList = document.getElementById("taskList");
-
   taskList.innerText = "";
   myApp.lists[listIndex].tasks.forEach((t, index) => {
     let li = document.createElement("li");
     // li.innerText = t.taskName;
     li.setAttribute(
       "class",
-      "list-group-item d-flex justify-content-between align-items-center"
+      "list-group-item d-flex justify-content-between align-items-center taskListItem"
     );
     li.setAttribute("id", index);
+    //title
     let taskName = document.createElement("h3");
     taskName.innerText = t.taskName;
     taskName.setAttribute("class", "flex-grow-1");
+    taskName.setAttribute("contenteditable", true);
+
+    taskName.addEventListener("input", changeTask(taskName));
     li.appendChild(taskName);
     //check button
     let checkBtn = document.createElement("button");
