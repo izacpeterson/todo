@@ -1,9 +1,10 @@
 /** @format */
 //Classes and methods
 class app {
-  constructor(user, lists) {
+  constructor(user, lists, activeList) {
     this.user = user;
     this.lists = [];
+    this.activeList = 0;
   }
   addList(listName) {
     let array = this.lists;
@@ -23,17 +24,25 @@ class toDoList {
     let array = this.tasks;
     array.push(task);
     this.tasks = array;
+    updateTaskDOM();
+    myApp.save();
   }
   removeTask(index) {
     let array = this.tasks;
     array.splice(index, 1);
     this.tasks = array;
+    myApp.save();
+    updateTaskDOM();
   }
 }
 class task {
   constructor(taskName, complete) {
     this.taskName = taskName;
     this.complete = complete;
+  }
+  changeTaskName(tn) {
+    this.taskName = tn;
+    myApp.save();
   }
   changeStatus() {
     if (!this.complete) {
@@ -60,9 +69,9 @@ function load() {
   }
   console.log(myApp);
 }
-if (myApp.lists[0] != undefined) {
+if (myApp.lists[myApp.activeList] != undefined) {
   updateListDOM();
-  updateTaskDOM(0);
+  updateTaskDOM();
 }
 
 //New List button and event listener
@@ -74,7 +83,7 @@ newListButton.addEventListener("click", () => {
 //Add task button and event listener
 let newTaskButton = document.getElementById("addTaskButton");
 newTaskButton.addEventListener("click", () => {
-  addTask(0, document.getElementById("newTask").value);
+  myApp.lists[myApp.activeList].addTask(new task(""));
 });
 
 //Add Lists
@@ -85,7 +94,7 @@ function addList(listName) {
 function updateListDOM() {
   let dropdownList = document.getElementById("dropdownList");
   let listH2 = document.getElementById("listName");
-  listH2.innerText = myApp.lists[0].listName;
+  listH2.innerText = myApp.lists[myApp.activeList].listName;
 
   dropdownList.innerHTML = "";
   myApp.lists.forEach((i) => {
@@ -96,57 +105,33 @@ function updateListDOM() {
   });
 }
 //Add tasks
-function addTask(listIndex, taskName) {
-  myApp.lists[listIndex].addTask(new task(taskName));
-  updateTaskDOM(listIndex);
-  myApp.save();
-}
-function updateTaskDOM(listIndex) {
+
+function updateTaskDOM() {
   let taskList = document.getElementById("taskList");
   taskList.innerText = "";
-  myApp.lists[listIndex].tasks.forEach((t, index) => {
+  myApp.lists[myApp.activeList].tasks.forEach((t, index) => {
     let li = document.createElement("li");
-    // li.innerText = t.taskName;
-    li.setAttribute(
-      "class",
-      "list-group-item d-flex justify-content-between align-items-center taskListItem"
-    );
-    li.setAttribute("id", index);
-    //title
-    let taskName = document.createElement("h3");
-    taskName.innerText = t.taskName;
-    taskName.setAttribute("class", "flex-grow-1");
-    taskName.setAttribute("contenteditable", true);
-
-    taskName.addEventListener("input", changeTask(taskName));
-    li.appendChild(taskName);
-    //check button
-    let checkBtn = document.createElement("button");
-    checkBtn.setAttribute("class", "btn btn-primary material-icons me-1");
-    checkBtn.setAttribute("onclick", `changeStatus('${index}')`);
-    checkBtn.innerText = "done";
-    li.appendChild(checkBtn);
-    //trash button
-    let btnRemove = document.createElement("button");
-    btnRemove.innerHTML = "delete";
-    btnRemove.setAttribute("class", "btn btn-danger material-icons");
-    li.appendChild(btnRemove);
-
-    taskList.appendChild(li);
+    taskList.innerHTML += `
+    <li class="list-group-item d-flex justify-content-between align-items-center" id="${index}">
+    <input class="form-control  me-1 flex-grow-1" value="${t.taskName}" oninput="myApp.lists[myApp.activeList].tasks[this.parentNode.id].changeTaskName(this.value);">
+    <button class="btn btn-primary material-icons me-1" onclick="changeStatus('${index}')">done</button>
+    <button class="btn btn-danger material-icons me-1" onclick="myApp.lists[myApp.activeList].removeTask('${index}')">delete</button>
+    </li>
+    `;
     changeStatusDOM(index);
   });
 }
 
 //change task status
 function changeStatus(id) {
-  myApp.lists[0].tasks[id].changeStatus();
+  myApp.lists[myApp.activeList].tasks[id].changeStatus();
   changeStatusDOM(id);
   myApp.save();
 }
 function changeStatusDOM(id) {
-  let taskDOM = document.getElementById(id).childNodes[0];
-  let taskBTN = document.getElementById(id).childNodes[1];
-  if (myApp.lists[0].tasks[id].complete) {
+  let taskDOM = document.getElementById(id).childNodes[1];
+  let taskBTN = document.getElementById(id).childNodes[3];
+  if (myApp.lists[myApp.activeList].tasks[id].complete) {
     taskDOM.style.color = "grey";
     taskDOM.style.textDecoration = "line-through";
     taskBTN.innerHTML = "restart_alt";
@@ -156,22 +141,10 @@ function changeStatusDOM(id) {
     );
   }
 
-  if (!myApp.lists[0].tasks[id].complete) {
+  if (!myApp.lists[myApp.activeList].tasks[id].complete) {
     taskDOM.style.color = "black";
-    taskBTN.style.backgroundColor = "";
     taskBTN.innerHTML = "done";
     taskBTN.setAttribute("class", "btn btn-primary material-icons me-1");
     taskDOM.style.textDecoration = "none";
   }
 }
-
-function tester() {
-  myApp.addList(new toDoList("myList"));
-  myApp.lists[0].addTask(new task("Wake Up"));
-  myApp.lists[0].addTask(new task("Go to school"));
-  myApp.lists[0].addTask(new task("Lunch"));
-  myApp.lists[0].addTask(new task("Go to work"));
-  updateListDOM();
-  updateTaskDOM(0);
-}
-// tester();
