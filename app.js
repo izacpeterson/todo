@@ -84,6 +84,13 @@ newListButton.addEventListener("click", () => {
 let newTaskButton = document.getElementById("addTaskButton");
 newTaskButton.addEventListener("click", () => {
   myApp.lists[myApp.activeList].addTask(new task(""));
+  console.log(
+    document.getElementById(myApp.lists[myApp.activeList].tasks.length - 1)
+      .childNodes[1]
+  );
+  document
+    .getElementById(myApp.lists[myApp.activeList].tasks.length - 1)
+    .childNodes[1].focus();
 });
 
 //Add Lists
