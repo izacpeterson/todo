@@ -1,9 +1,19 @@
 /** @format */
-#fab {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+nav {
+  box-shadow: 0 0 5px black;
 }
 #taskList li h3 {
   transition: 0.5s;
+}
+#FAB {
+  bottom: 20px;
+}
+#FAB button {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 5px grey;
+}
+#taskList {
+  box-shadow: 0 0 5px #ccc;
 }
