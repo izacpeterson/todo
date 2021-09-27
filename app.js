@@ -119,7 +119,7 @@ function updateTaskDOM(listIndex) {
     li.appendChild(taskName);
     //check button
     let checkBtn = document.createElement("button");
-    checkBtn.setAttribute("class", "btn btn-success material-icons me-1");
+    checkBtn.setAttribute("class", "btn btn-primary material-icons me-1");
     checkBtn.setAttribute("onclick", `changeStatus('${index}')`);
     checkBtn.innerText = "done";
     li.appendChild(checkBtn);
@@ -142,13 +142,22 @@ function changeStatus(id) {
 }
 function changeStatusDOM(id) {
   let taskDOM = document.getElementById(id).childNodes[0];
+  let taskBTN = document.getElementById(id).childNodes[1];
   if (myApp.lists[0].tasks[id].complete) {
     taskDOM.style.color = "grey";
     taskDOM.style.textDecoration = "line-through";
+    taskBTN.innerHTML = "restart_alt";
+    taskBTN.setAttribute(
+      "class",
+      "btn btn-outline-secondary material-icons me-1"
+    );
   }
 
   if (!myApp.lists[0].tasks[id].complete) {
     taskDOM.style.color = "black";
+    taskBTN.style.backgroundColor = "";
+    taskBTN.innerHTML = "done";
+    taskBTN.setAttribute("class", "btn btn-primary material-icons me-1");
     taskDOM.style.textDecoration = "none";
   }
 }
