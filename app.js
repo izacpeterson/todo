@@ -119,16 +119,24 @@ function updateTaskDOM() {
   myApp.lists[myApp.activeList].tasks.forEach((t, index) => {
     let li = document.createElement("li");
     taskList.innerHTML += `
-    <li class="bg-iz-bg-3 list-group-item d-flex justify-content-between align-items-center" id="${index}">
+    <li class="bg-iz-bg-3 list-group-item d-flex justify-content-between align-items-center todoItem" id="${index}">
     <input class="form-control  me-1 flex-grow-1" value="${t.taskName}" oninput="myApp.lists[myApp.activeList].tasks[this.parentNode.id].changeTaskName(this.value);">
     <button class="btn material-icons me-1" onclick="changeStatus('${index}')">done</button>
-    <button class="btn btn-danger material-icons me-1" onclick="myApp.lists[myApp.activeList].removeTask('${index}')">delete</button>
+    <button class="btn btn-danger material-icons me-1 trashBtn" onclick="deleteItem(${index},event)">delete</button>
     </li>
     `;
     changeStatusDOM(index);
   });
 }
+//delete item
+function deleteItem(i, listItem) {
+  listItem.target.parentElement.classList.add("deleteTransition");
+  console.log(listItem.target.parentElement);
 
+  setTimeout(() => {
+    myApp.lists[myApp.activeList].removeTask(i);
+  }, 500);
+}
 //change task status
 function changeStatus(id) {
   myApp.lists[myApp.activeList].tasks[id].changeStatus();
@@ -156,5 +164,39 @@ function changeStatusDOM(id) {
       "btn btn-secondary text-white material-icons me-1"
     );
     taskDOM.style.textDecoration = "none";
+  }
+}
+//darkmode
+let dm = false;
+function darkMode() {
+  console.log("darkmode");
+  if (dm == false) {
+    document.querySelector(".bg-iz-bg-1").classList.toggle("bg-iz-bg-dark-1");
+    document.querySelector("nav").classList.toggle("bg-iz-bg-dark-2");
+    document.querySelector("nav").classList.toggle("iz-shadow-dark");
+    document.querySelector("svg").classList.toggle("svgDark");
+
+    document.querySelector(".navbar-brand").classList.toggle("text-white");
+    document.querySelector(".dropdown-toggle").classList.toggle("text-white");
+    document.querySelector(".list-group").classList.toggle("iz-shadow-dark");
+    document.querySelectorAll(".bg-iz-bg-3").forEach((el) => {
+      el.classList.toggle("bg-iz-bg-dark-3");
+    });
+
+    dm = true;
+  } else if (dm == true) {
+    document.querySelector(".bg-iz-bg-1").classList.toggle("bg-iz-bg-dark-1");
+    document.querySelector("nav").classList.toggle("bg-iz-bg-dark-2");
+    document.querySelector("nav").classList.toggle("iz-shadow-dark");
+    document.querySelector("svg").classList.toggle("svgDark");
+
+    document.querySelector(".navbar-brand").classList.toggle("text-white");
+    document.querySelector(".dropdown-toggle").classList.toggle("text-white");
+    document.querySelector(".list-group").classList.toggle("iz-shadow-dark");
+
+    document.querySelectorAll(".bg-iz-bg-3").forEach((el) => {
+      el.classList.toggle("bg-iz-bg-dark-3");
+    });
+    dm = true;
   }
 }

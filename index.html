@@ -22,16 +22,32 @@
     <title>Todo</title>
   </head>
   <body class="bg-iz-bg-1">
-    <nav class="navbar bg-primary navbar-light mb-1">
+    <nav class="navbar bg-primary navbar-light mb-1 iz-shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img
-            src="./img/logo_transparent.png"
-            alt=""
+          <svg
+            id="Layer_3"
+            data-name="Layer 3"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 897.68 999.5"
             width="30"
             height="30"
-            class="d-inline-block align-text-top"
-          />
+            class="d-inline-block align-text-top svgLight"
+          >
+            <polygon
+              class="cls-1"
+              points="512.96 111.03 512.96 111.06 448.84 222.08 384.72 111.06 384.72 111.03 448.84 0 512.96 111.03"
+            />
+            <polygon
+              class="cls-1"
+              points="384.72 333.17 128.24 777.39 0 777.39 320.6 222.11 384.72 333.17"
+            />
+            <polygon
+              class="cls-1"
+              points="897.68 777.39 512.96 777.39 577.08 666.33 705.32 666.33 577.08 444.22 256.48 999.5 128.24 999.5 577.08 222.11 897.68 777.39"
+            />
+          </svg>
+
           To Do
         </a>
         <div class="dropdown">
@@ -70,7 +86,7 @@
       </div>
       <div class="row mb-5">
         <div class="col">
-          <ul class="list-group bg-iz-bg-2" id="taskList"></ul>
+          <ul class="list-group iz-shadow" id="taskList"></ul>
         </div>
       </div>
       <div class="row">
@@ -123,6 +139,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="form-check form-switch">
+      <input type="checkbox" onchange="darkMode()" id="darkModeSwitch" />
+      <label class="form-check-label" for="darkModeSwitch">DarkMode</label>
     </div>
   </body>
   <script

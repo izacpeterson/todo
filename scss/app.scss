@@ -12,13 +12,16 @@ $theme-colors: (
   "warning": $warning,
   "danger": #dc264c,
   "light": $light,
-  "dark": #4a60b5,
+  "dark": $dark,
 );
 
 $custom-theme-colors: (
   "iz-bg-1": #e1e2e1,
   "iz-bg-2": #f5f5f6,
   "iz-bg-3": #fafafb,
+  "iz-bg-dark-1": $dark,
+  "iz-bg-dark-2": lighten($dark, 5%),
+  "iz-bg-dark-3": lighten($dark, 5%),
 );
 
 $theme-colors: map-merge($theme-colors, $custom-theme-colors);
@@ -34,17 +37,21 @@ $utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-$shadow: 0 0 5px rgb(204, 204, 204);
+.iz-shadow {
+  box-shadow: 0 0 5px grey;
+}
+.iz-shadow-dark {
+  box-shadow: 0 0 5px black;
+}
+.list-group-item::before {
+  content: "";
+  background-color: $primary;
+  width: 3px;
+  height: 50%;
+  position: absolute;
+  left: 0;
+}
 
-.list-group-item {
-  border-left: solid 5px $primary;
-}
-.list-group {
-  box-shadow: $shadow;
-}
-nav {
-  box-shadow: $shadow;
-}
 .btn-fab {
   border: none;
   border-radius: 50%;
@@ -52,4 +59,21 @@ nav {
   height: 50px;
   width: 50px;
   bottom: 50px;
+}
+
+.taskList {
+  transition: 0.2s;
+}
+.todoItem {
+  transition: 0.5s;
+}
+.deleteTransition {
+  transform: translateX(100%) rotate(20deg);
+  opacity: 0;
+}
+.svgLight {
+  fill: $dark;
+}
+.svgDark {
+  fill: #39b54a;
 }
