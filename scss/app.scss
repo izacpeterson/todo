@@ -1,0 +1,37 @@
+/** @format */
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$izDark: #262626;
+// $izDark: #aaa;
+%iz-dark {
+  color: white;
+}
+.iz-dark-1 {
+  @extend %iz-dark;
+  background-color: $izDark;
+}
+.iz-dark-2 {
+  @extend %iz-dark;
+
+  background-color: lighten($izDark, 2%);
+  a {
+    color: white;
+  }
+}
+.iz-dark-3 {
+  @extend %iz-dark;
+
+  background-color: lighten($izDark, 4%);
+}

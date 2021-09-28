@@ -17,12 +17,12 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/app.css" />
     <link rel="manifest" href="manifest.json" />
     <title>Todo</title>
   </head>
-  <body>
-    <nav class="navbar navbar-dark bg-dark mb-1">
+  <body class="iz-dark-1">
+    <nav class="navbar iz-dark-2 mb-1">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img
@@ -36,7 +36,7 @@
         </a>
         <div class="dropdown">
           <div
-            class="text-white dropdown-toggle"
+            class="dropdown-toggle"
             id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -65,7 +65,7 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-auto">
-          <h2 id="listName"></h2>
+          <h2 id="listName" class=""></h2>
         </div>
       </div>
       <div class="row mb-5">
@@ -90,7 +90,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content iz-dark-1">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add New List</h5>
             <button type="button" class="btn-close" aria-label="Close"></button>
@@ -111,7 +111,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary fixed-bottom"
+              class="btn btn-primary"
               id="newListButton"
               data-bs-dismiss="modal"
             >
