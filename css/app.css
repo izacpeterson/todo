@@ -11698,15 +11698,6 @@ textarea.form-control-lg {
   box-shadow: 0 0 5px black;
 }
 
-.list-group-item::before {
-  content: "";
-  background-color: #0d6efd;
-  width: 3px;
-  height: 50%;
-  position: absolute;
-  left: 0;
-}
-
 .btn-fab {
   border: none;
   border-radius: 50%;
@@ -11722,6 +11713,15 @@ textarea.form-control-lg {
 
 .todoItem {
   transition: 0.5s;
+  --line_width: 0%;
+}
+.todoItem::after {
+  transition: 0.2s;
+  content: "";
+  background-color: #aaa;
+  width: var(--line_width);
+  height: 3px;
+  position: absolute;
 }
 
 .deleteTransition {

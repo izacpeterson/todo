@@ -43,14 +43,6 @@ $utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 .iz-shadow-dark {
   box-shadow: 0 0 5px black;
 }
-.list-group-item::before {
-  content: "";
-  background-color: $primary;
-  width: 3px;
-  height: 50%;
-  position: absolute;
-  left: 0;
-}
 
 .btn-fab {
   border: none;
@@ -66,6 +58,16 @@ $utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 }
 .todoItem {
   transition: 0.5s;
+  --line_width: 0%;
+
+  &::after {
+    transition: 0.2s;
+    content: "";
+    background-color: #aaa;
+    width: var(--line_width);
+    height: 3px;
+    position: absolute;
+  }
 }
 .deleteTransition {
   transform: translateX(100%) rotate(20deg);

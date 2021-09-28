@@ -148,12 +148,12 @@ function changeStatusDOM(id) {
   let taskBTN = document.getElementById(id).childNodes[3];
   if (myApp.lists[myApp.activeList].tasks[id].complete) {
     taskDOM.style.color = "grey";
-    taskDOM.style.textDecoration = "line-through";
     taskBTN.innerHTML = "restart_alt";
     taskBTN.setAttribute(
       "class",
       "btn btn-outline-secondary material-icons me-1"
     );
+    document.getElementById(id).style.setProperty("--line_width", "60%");
   }
 
   if (!myApp.lists[myApp.activeList].tasks[id].complete) {
@@ -163,7 +163,7 @@ function changeStatusDOM(id) {
       "class",
       "btn btn-secondary text-white material-icons me-1"
     );
-    taskDOM.style.textDecoration = "none";
+    document.getElementById(id).style.setProperty("--line_width", "0%");
   }
 }
 //darkmode
