@@ -119,9 +119,9 @@ function updateTaskDOM() {
   myApp.lists[myApp.activeList].tasks.forEach((t, index) => {
     let li = document.createElement("li");
     taskList.innerHTML += `
-    <li class="iz-dark-3 list-group-item d-flex justify-content-between align-items-center" id="${index}">
+    <li class="bg-iz-bg-3 list-group-item d-flex justify-content-between align-items-center" id="${index}">
     <input class="form-control  me-1 flex-grow-1" value="${t.taskName}" oninput="myApp.lists[myApp.activeList].tasks[this.parentNode.id].changeTaskName(this.value);">
-    <button class="btn btn-custom material-icons me-1" onclick="changeStatus('${index}')">done</button>
+    <button class="btn material-icons me-1" onclick="changeStatus('${index}')">done</button>
     <button class="btn btn-danger material-icons me-1" onclick="myApp.lists[myApp.activeList].removeTask('${index}')">delete</button>
     </li>
     `;
@@ -151,7 +151,10 @@ function changeStatusDOM(id) {
   if (!myApp.lists[myApp.activeList].tasks[id].complete) {
     taskDOM.style.color = "black";
     taskBTN.innerHTML = "done";
-    taskBTN.setAttribute("class", "btn btn-primary material-icons me-1");
+    taskBTN.setAttribute(
+      "class",
+      "btn btn-secondary text-white material-icons me-1"
+    );
     taskDOM.style.textDecoration = "none";
   }
 }
