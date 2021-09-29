@@ -99,7 +99,10 @@
         bottomNav
       "
     >
-      <span class="text-secondary d-flex align-items-center">
+      <span
+        class="text-secondary d-flex align-items-center"
+        onclick="if(myApp.activeList!=0){myApp.activeList-=1}; updateTaskDOM(); updateListDOM(); "
+      >
         <span class="material-icons m-2 navBtnSmall"> arrow_back </span>
         Back
       </span>
@@ -108,7 +111,10 @@
           add
         </span>
       </button>
-      <span class="text-secondary d-flex align-items-center">
+      <span
+        class="text-secondary d-flex align-items-center"
+        onclick="if(myApp.activeList!=myApp.lists.length-1){myApp.activeList+=1}; updateTaskDOM(); updateListDOM(); "
+      >
         Next
         <span class="text-secondary material-icons m-2 navBtnSmall">
           arrow_forward
