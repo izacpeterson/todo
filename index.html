@@ -22,7 +22,7 @@
     <title>Todo</title>
   </head>
   <body class="bg-iz-bg-1">
-    <nav class="navbar bg-primary navbar-light mb-1 iz-shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary iz-shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <svg
@@ -32,7 +32,7 @@
             viewBox="0 0 897.68 999.5"
             width="30"
             height="30"
-            class="d-inline-block align-text-top svgLight"
+            class="d-inline-block align-text-top svgDark"
           >
             <polygon
               class="cls-1"
@@ -50,31 +50,72 @@
 
           To Do
         </a>
-        <div class="dropdown">
-          <div
-            class="dropdown-toggle"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Select List
-          </div>
-          <ul
-            class="dropdown-menu"
-            aria-labelledby="dropdownMenuButton1"
-            id="dropdownList"
-          ></ul>
-        </div>
         <button
+          class="navbar-toggler"
           type="button"
-          class="btn btn-secondary"
-          data-bs-toggle="modal"
-          data-bs-target="#newListModal"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          New List
+          <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul
+            class="
+              navbar-nav
+              me-auto
+              mb-2 mb-lg-0
+              list-group list-group-horizontal-md
+            "
+            id="listMenu"
+          ></ul>
+          <div class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="List Name"
+              aria-label="Search"
+              id="newListName"
+            />
+            <button class="btn btn-secondary" id="newListButton">
+              NewList
+            </button>
+          </div>
+        </div>
       </div>
     </nav>
+
+    <div
+      class="
+        container-fluid
+        fixed-bottom
+        d-flex
+        justify-content-between
+        align-items-center
+        bg-light
+        iz-shadow
+        bottomNav
+      "
+    >
+      <span class="text-secondary d-flex align-items-center">
+        <span class="material-icons m-2 navBtnSmall"> arrow_back </span>
+        Back
+      </span>
+      <button class="btn-fab" id="addTaskButton">
+        <span class="material-icons iz-shadow text-white bg-primary">
+          add
+        </span>
+      </button>
+      <span class="text-secondary d-flex align-items-center">
+        Next
+        <span class="text-secondary material-icons m-2 navBtnSmall">
+          arrow_forward
+        </span>
+      </span>
+    </div>
+
     <div class="container">
       <div class="row">
         <div class="col"></div>
@@ -90,54 +131,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col d-flex justify-content-center">
-          <button
-            class="btn-fab btn-secondary material-icons"
-            id="addTaskButton"
-          >
-            add
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="newListModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New List</h5>
-            <button type="button" class="btn-close" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <label for="newListName">New List Name</label>
-              <input type="text" id="newListName" />
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              id="newListButton"
-              data-bs-dismiss="modal"
-            >
-              Add List
-            </button>
-          </div>
-        </div>
+        <div class="col d-flex justify-content-center"></div>
       </div>
     </div>
     <!-- <div class="form-check form-switch">

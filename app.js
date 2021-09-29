@@ -12,7 +12,13 @@ class app {
     this.lists = array;
   }
   save() {
+    console.log(this);
     localStorage.setItem("todoApp", JSON.stringify(this));
+  }
+  changeList(index) {
+    this.activeList = index;
+    updateListDOM();
+    updateTaskDOM();
   }
 }
 class toDoList {
@@ -78,6 +84,10 @@ if (myApp.lists[myApp.activeList] != undefined) {
 let newListButton = document.getElementById("newListButton");
 newListButton.addEventListener("click", () => {
   addList(document.getElementById("newListName").value);
+  myApp.save();
+  myApp.activeList += 1;
+  updateListDOM();
+  updateTaskDOM();
 });
 
 //Add task button and event listener
@@ -99,16 +109,16 @@ function addList(listName) {
   updateListDOM(listName);
 }
 function updateListDOM() {
-  let dropdownList = document.getElementById("dropdownList");
+  let dropdownList = document.getElementById("listMenu");
   let listH2 = document.getElementById("listName");
   listH2.innerText = myApp.lists[myApp.activeList].listName;
 
   dropdownList.innerHTML = "";
-  myApp.lists.forEach((i) => {
-    let li = document.createElement("li");
-    li.appendChild(document.createTextNode(i.listName));
-    li.setAttribute("class", "dropdown-item");
-    dropdownList.appendChild(li);
+  myApp.lists.forEach((list, index) => {
+    console.log(list.listName);
+    dropdownList.innerHTML += `
+    <li class="nav-item list-group-item bg-primary text-white" id="list${index}" onclick="myApp.changeList('${index}')")>${list.listName}</li>
+    `;
   });
 }
 //Add tasks
