@@ -129,9 +129,9 @@ function updateTaskDOM() {
   myApp.lists[myApp.activeList].tasks.forEach((t, index) => {
     let li = document.createElement("li");
     taskList.innerHTML += `
-    <li class="bg-iz-bg-3 list-group-item d-flex justify-content-between align-items-center todoItem" id="${index}">
+    <li class="bg-iz-bg-1 list-group-item d-flex justify-content-between align-items-center todoItem" id="${index}">
     <input class="form-control  me-1 flex-grow-1" value="${t.taskName}" oninput="myApp.lists[myApp.activeList].tasks[this.parentNode.id].changeTaskName(this.value);">
-    <button class="btn material-icons me-1" onclick="changeStatus('${index}')">done</button>
+    <button class="btn-iz-check iz-sh-1 material-icons me-1" onclick="changeStatus('${index}')">done</button>
     <button class="btn btn-danger material-icons me-1 trashBtn" onclick="deleteItem(${index},event)">delete</button>
     </li>
     `;
@@ -159,20 +159,18 @@ function changeStatusDOM(id) {
   if (myApp.lists[myApp.activeList].tasks[id].complete) {
     taskDOM.style.color = "grey";
     taskBTN.innerHTML = "restart_alt";
-    taskBTN.setAttribute(
-      "class",
-      "btn btn-outline-secondary material-icons me-1"
-    );
+
+    taskBTN.classList.add("btn-iz-uncheck");
+    taskBTN.classList.remove("iz-sh-1");
     document.getElementById(id).style.setProperty("--line_width", "60%");
   }
 
   if (!myApp.lists[myApp.activeList].tasks[id].complete) {
     taskDOM.style.color = "black";
     taskBTN.innerHTML = "done";
-    taskBTN.setAttribute(
-      "class",
-      "btn btn-secondary text-white material-icons me-1"
-    );
+    taskBTN.classList.remove("btn-iz-uncheck");
+    taskBTN.classList.add("iz-sh-1");
+
     document.getElementById(id).style.setProperty("--line_width", "0%");
   }
 }

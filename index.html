@@ -22,7 +22,7 @@
     <title>Todo</title>
   </head>
   <body class="bg-iz-bg-1">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary iz-shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary iz-sh-1">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <svg
@@ -32,7 +32,7 @@
             viewBox="0 0 897.68 999.5"
             width="30"
             height="30"
-            class="d-inline-block align-text-top svgDark"
+            class="d-inline-block align-text-top svgLight"
           >
             <polygon
               class="cls-1"
@@ -51,7 +51,7 @@
           To Do
         </a>
         <button
-          class="navbar-toggler"
+          class="btn-iz bg-primary text-white"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -59,7 +59,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span class="material-icons"> menu </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul
@@ -79,7 +79,7 @@
               aria-label="Search"
               id="newListName"
             />
-            <button class="btn btn-secondary" id="newListButton">
+            <button class="btn-iz bg-white text-primary" id="newListButton">
               NewList
             </button>
           </div>
@@ -94,26 +94,27 @@
         d-flex
         justify-content-between
         align-items-center
-        bg-light
-        iz-shadow
+        bg-iz-bg-1
+        iz-sh-2
         bottomNav
       "
     >
       <span
-        class="text-secondary d-flex align-items-center"
+        class="text-secondary d-flex align-items-center btn-iz"
         onclick="if(myApp.activeList!=0){myApp.activeList-=1}; updateTaskDOM(); updateListDOM(); "
       >
-        <span class="material-icons m-2 navBtnSmall"> arrow_back </span>
+        <span class="material-icons m-2"> arrow_back </span>
         Back
       </span>
-      <button class="btn-fab" id="addTaskButton">
-        <span class="material-icons iz-shadow text-white bg-primary">
-          add
-        </span>
-      </button>
       <span
-        class="text-secondary d-flex align-items-center"
-        onclick="if(myApp.activeList!=myApp.lists.length-1){myApp.activeList+=1}; updateTaskDOM(); updateListDOM(); "
+        class="material-icons iz-sh-2 text-white bg-primary btn-fab"
+        id="addTaskButton"
+      >
+        add
+      </span>
+      <span
+        class="text-secondary d-flex align-items-center btn-iz"
+        onclick="if(myApp.activeList!=myApp.lists.length-1){myApp.activeList+=1}; updateTaskDOM(); updateListDOM();"
       >
         Next
         <span class="text-secondary material-icons m-2 navBtnSmall">
@@ -133,7 +134,7 @@
       </div>
       <div class="row mb-5">
         <div class="col">
-          <ul class="list-group iz-shadow" id="taskList"></ul>
+          <ul class="list-group iz-sh-1" id="taskList"></ul>
         </div>
       </div>
       <div class="row">
