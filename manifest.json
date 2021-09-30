@@ -2,8 +2,8 @@
   "name": "Izac ToDo App",
   "short_name": "To Do",
   "display": "standalone",
-  "background_color": "#39B54A",
-  "theme_color": "#212529",
+  "background_color": "#652aef",
+  "theme_color": "#5121c0",
   "start_url": "/",
   "prefer_related_applications": true,
   "icons": [
