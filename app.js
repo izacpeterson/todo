@@ -94,10 +94,6 @@ newListButton.addEventListener("click", () => {
 let newTaskButton = document.getElementById("addTaskButton");
 newTaskButton.addEventListener("click", () => {
   myApp.lists[myApp.activeList].addTask(new task(""));
-  console.log(
-    document.getElementById(myApp.lists[myApp.activeList].tasks.length - 1)
-      .childNodes[1]
-  );
   document
     .getElementById(myApp.lists[myApp.activeList].tasks.length - 1)
     .childNodes[1].focus();
@@ -129,10 +125,10 @@ function updateTaskDOM() {
   myApp.lists[myApp.activeList].tasks.forEach((t, index) => {
     let li = document.createElement("li");
     taskList.innerHTML += `
-    <li class="bg-iz-bg-1 list-group-item d-flex justify-content-between align-items-center todoItem" id="${index}">
-    <input class="form-control  me-1 flex-grow-1" value="${t.taskName}" oninput="myApp.lists[myApp.activeList].tasks[this.parentNode.id].changeTaskName(this.value);">
-    <button class="btn-iz-check iz-sh-1 material-icons me-1" onclick="changeStatus('${index}')">done</button>
-    <button class="btn btn-danger material-icons me-1 trashBtn" onclick="deleteItem(${index},event)">delete</button>
+    <li class="bg-transparent-lt list-group-item d-flex justify-content-between align-items-center todoItem" id="${index}">
+    <input class="form-control bg-white me-1 flex-grow-1 border-0" value="${t.taskName}" oninput="myApp.lists[myApp.activeList].tasks[this.parentNode.id].changeTaskName(this.value);">
+    <button class="btn-iz-check text-white iz-sh-1 material-icons me-1" onclick="changeStatus('${index}')">done</button>
+    <button class="btn-iz bg-transparent text-primary material-icons me-1 trashBtn" onclick="deleteItem(${index},event)">delete</button>
     </li>
     `;
     changeStatusDOM(index);
@@ -160,15 +156,22 @@ function changeStatusDOM(id) {
     taskDOM.style.color = "grey";
     taskBTN.innerHTML = "restart_alt";
 
-    taskBTN.classList.add("btn-iz-uncheck");
+    taskBTN.classList.add("bg-transparent");
+    taskBTN.classList.add("text-primary");
+    taskBTN.classList.remove("bg-primary");
+    taskBTN.classList.remove("text-white");
     taskBTN.classList.remove("iz-sh-1");
+
     document.getElementById(id).style.setProperty("--line_width", "60%");
   }
 
   if (!myApp.lists[myApp.activeList].tasks[id].complete) {
     taskDOM.style.color = "black";
     taskBTN.innerHTML = "done";
-    taskBTN.classList.remove("btn-iz-uncheck");
+    taskBTN.classList.remove("bg-transparent");
+    taskBTN.classList.remove("text-primary");
+    taskBTN.classList.add("bg-primary");
+    taskBTN.classList.add("text-white");
     taskBTN.classList.add("iz-sh-1");
 
     document.getElementById(id).style.setProperty("--line_width", "0%");
@@ -177,34 +180,18 @@ function changeStatusDOM(id) {
 //darkmode
 let dm = false;
 function darkMode() {
-  console.log("darkmode");
-  if (dm == false) {
-    document.querySelector(".bg-iz-bg-1").classList.toggle("bg-iz-bg-dark-1");
-    document.querySelector("nav").classList.toggle("bg-iz-bg-dark-2");
-    document.querySelector("nav").classList.toggle("iz-shadow-dark");
-    document.querySelector("svg").classList.toggle("svgDark");
-
-    document.querySelector(".navbar-brand").classList.toggle("text-white");
-    document.querySelector(".dropdown-toggle").classList.toggle("text-white");
-    document.querySelector(".list-group").classList.toggle("iz-shadow-dark");
-    document.querySelectorAll(".bg-iz-bg-3").forEach((el) => {
-      el.classList.toggle("bg-iz-bg-dark-3");
-    });
-
-    dm = true;
-  } else if (dm == true) {
-    document.querySelector(".bg-iz-bg-1").classList.toggle("bg-iz-bg-dark-1");
-    document.querySelector("nav").classList.toggle("bg-iz-bg-dark-2");
-    document.querySelector("nav").classList.toggle("iz-shadow-dark");
-    document.querySelector("svg").classList.toggle("svgDark");
-
-    document.querySelector(".navbar-brand").classList.toggle("text-white");
-    document.querySelector(".dropdown-toggle").classList.toggle("text-white");
-    document.querySelector(".list-group").classList.toggle("iz-shadow-dark");
-
-    document.querySelectorAll(".bg-iz-bg-3").forEach((el) => {
-      el.classList.toggle("bg-iz-bg-dark-3");
-    });
-    dm = true;
+  let ltelems = document.querySelectorAll(".bg-transparent-lt");
+  let wtelems = document.querySelectorAll(".bg-white");
+  let nav = document.querySelector("nav");
+  let svg = document.querySelector(".svgLight");
+  svg.classList.toggle("svgDark");
+  nav.classList.toggle("bg-primary");
+  nav.classList.toggle("bg-transparent-dk");
+  for (el of ltelems) {
+    el.classList.toggle("bg-transparent-dk");
+  }
+  for (el of wtelems) {
+    el.classList.toggle("bg-dark");
+    el.classList.toggle("text-white");
   }
 }
