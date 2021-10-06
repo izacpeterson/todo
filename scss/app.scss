@@ -45,8 +45,10 @@ $iz-shadows: (
     transition: 0.5s;
   }
 }
+
 body {
   transition: 0.2s;
+  overflow-x: hidden;
 }
 .btn:focus,
 .btn:active {
@@ -66,9 +68,13 @@ body {
   transition: 0.2s;
 
   &:active {
-    // background-color: lighten($primary, 10%) !important;
+    background-color: lighten($primary, 10%) !important;
     box-shadow: $iz-sh-3;
     transform: scale(1.05);
+  }
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
   }
 }
 .btn-iz {
@@ -78,6 +84,9 @@ body {
   transition: 0.2s;
   &:active {
     transform: scale(1.1);
+  }
+  &:hover {
+    cursor: pointer;
   }
 }
 .btn-iz-check {

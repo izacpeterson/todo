@@ -12,7 +12,6 @@ class app {
     this.lists = array;
   }
   save() {
-    console.log(this);
     localStorage.setItem("todoApp", JSON.stringify(this));
   }
   changeList(index) {
@@ -73,7 +72,6 @@ function load() {
       });
     });
   }
-  console.log(myApp);
 }
 if (myApp.lists[myApp.activeList] != undefined) {
   updateListDOM();
@@ -111,7 +109,6 @@ function updateListDOM() {
 
   dropdownList.innerHTML = "";
   myApp.lists.forEach((list, index) => {
-    console.log(list.listName);
     dropdownList.innerHTML += `
     <li class="nav-item list-group-item bg-primary text-white" id="list${index}" onclick="myApp.changeList('${index}')")>${list.listName}</li>
     `;
@@ -137,7 +134,6 @@ function updateTaskDOM() {
 //delete item
 function deleteItem(i, listItem) {
   listItem.target.parentElement.classList.add("deleteTransition");
-  console.log(listItem.target.parentElement);
 
   setTimeout(() => {
     myApp.lists[myApp.activeList].removeTask(i);

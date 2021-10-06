@@ -17,6 +17,7 @@
 
 body {
   transition: 0.2s;
+  overflow-x: hidden;
 }
 
 .btn:focus,
@@ -38,8 +39,13 @@ body {
   transition: 0.2s;
 }
 .btn-fab:active {
+  background-color: #8540f5 !important;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   transform: scale(1.05);
+}
+.btn-fab:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .btn-iz {
@@ -50,6 +56,9 @@ body {
 }
 .btn-iz:active {
   transform: scale(1.1);
+}
+.btn-iz:hover {
+  cursor: pointer;
 }
 
 .btn-iz-check {
