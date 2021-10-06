@@ -8,16 +8,14 @@
   "prefer_related_applications": true,
   "icons": [
     {
-      "src": "./img/lgo192.png",
+      "src": "./img/ico192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "./img/logo512.png",
+      "src": "./img/ico512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
