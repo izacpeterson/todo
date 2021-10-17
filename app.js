@@ -63,6 +63,7 @@ load();
 function load() {
   let data = JSON.parse(localStorage.getItem("todoApp"));
   if (data != null) {
+    document.querySelector("#newUser").style = "display: none";
     data.lists.forEach((list, index) => {
       myApp.addList(new toDoList(data.lists[index].listName));
       data.lists[index].tasks.forEach((taskobj, taskindex) => {
@@ -71,6 +72,7 @@ function load() {
         );
       });
     });
+  } else {
   }
 }
 if (myApp.lists[myApp.activeList] != undefined) {
@@ -84,6 +86,20 @@ newListButton.addEventListener("click", () => {
   addList(document.getElementById("newListName").value);
   myApp.save();
   myApp.activeList += 1;
+  updateListDOM();
+  updateTaskDOM();
+});
+
+let newListButton2 = document.getElementById("newListButton2");
+newListButton2.addEventListener("click", () => {
+  document.querySelector("#newUser").style = "display: none";
+
+  addList(document.getElementById("newListName2").value);
+
+  myApp.save();
+  myApp.activeList += 1;
+  location.reload();
+
   updateListDOM();
   updateTaskDOM();
 });

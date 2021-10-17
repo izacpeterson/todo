@@ -16,9 +16,145 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/app.css" />
     <link rel="manifest" href="manifest.json" />
     <title>Todo</title>
   </head>
-  <body></body>
+  <body class="bg-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary iz-sh-1">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <svg
+            id="Layer_3"
+            data-name="Layer 3"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 897.68 999.5"
+            width="30"
+            height="30"
+            class="d-inline-block align-text-top svgLight"
+          >
+            <polygon
+              class="cls-1"
+              points="512.96 111.03 512.96 111.06 448.84 222.08 384.72 111.06 384.72 111.03 448.84 0 512.96 111.03"
+            />
+            <polygon
+              class="cls-1"
+              points="384.72 333.17 128.24 777.39 0 777.39 320.6 222.11 384.72 333.17"
+            />
+            <polygon
+              class="cls-1"
+              points="897.68 777.39 512.96 777.39 577.08 666.33 705.32 666.33 577.08 444.22 256.48 999.5 128.24 999.5 577.08 222.11 897.68 777.39"
+            />
+          </svg>
+
+          To Do
+        </a>
+        <button
+          class="navbar-toggler btn-iz bg-primary text-white"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="material-icons"> menu </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul
+            class="
+              navbar-nav
+              me-auto
+              mb-2 mb-lg-0
+              list-group list-group-horizontal-md
+            "
+            id="listMenu"
+          ></ul>
+          <div class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="List Name"
+              aria-label="Search"
+              id="newListName"
+            />
+            <button
+              class="btn-iz bg-white text-primary"
+              id="newListButton"
+              onclick="app.addList(document.getElementById('newListName').value)"
+            >
+              NewList
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="
+        container-fluid
+        fixed-bottom
+        d-flex
+        justify-content-between
+        align-items-center
+        bg-transparent-lt
+        iz-sh-2
+        bottomNav
+      "
+    >
+      <span
+        class="text-secondary d-flex align-items-center btn-iz"
+        onclick="if(myApp.activeList!=0){myApp.activeList-=1}; updateTaskDOM(); updateListDOM(); "
+      >
+        <span class="material-icons m-2"> arrow_back </span>
+        Back
+      </span>
+      <span
+        class="material-icons iz-sh-2 text-white bg-primary btn-fab"
+        id="addTaskButton"
+        onclick="app.addTask('')"
+      >
+        add
+      </span>
+      <span
+        class="text-secondary d-flex align-items-center btn-iz"
+        onclick="if(myApp.activeList!=myApp.lists.length-1){myApp.activeList+=1}; updateTaskDOM(); updateListDOM();"
+      >
+        Next
+        <span class="text-secondary material-icons m-2 navBtnSmall">
+          arrow_forward
+        </span>
+      </span>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <h2 id="listName" class=""></h2>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col">
+          <ul class="list-group iz-sh-1" id="taskList"></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex justify-content-center"></div>
+      </div>
+    </div>
+    <!-- <div class="form-check form-switch">
+      <input type="checkbox" onchange="darkMode()" id="darkModeSwitch" />
+      <label class="form-check-label" for="darkModeSwitch">DarkMode</label>
+    </div> -->
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./app2.js"></script>
+  <script src="./workerinit.js"></script>
 </html>

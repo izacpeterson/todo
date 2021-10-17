@@ -143,6 +143,11 @@ body {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
+#newUser {
+  display: flex;
+  flex-direction: column;
+}
+
 /*!
  * Bootstrap v5.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
