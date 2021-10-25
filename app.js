@@ -63,7 +63,6 @@ load();
 function load() {
   let data = JSON.parse(localStorage.getItem("todoApp"));
   if (data != null) {
-    document.querySelector("#newUser").style = "display: none";
     data.lists.forEach((list, index) => {
       myApp.addList(new toDoList(data.lists[index].listName));
       data.lists[index].tasks.forEach((taskobj, taskindex) => {
@@ -83,6 +82,7 @@ if (myApp.lists[myApp.activeList] != undefined) {
 //New List button and event listener
 let newListButton = document.getElementById("newListButton");
 newListButton.addEventListener("click", () => {
+  location.reload();
   addList(document.getElementById("newListName").value);
   myApp.save();
   myApp.activeList += 1;
@@ -90,19 +90,19 @@ newListButton.addEventListener("click", () => {
   updateTaskDOM();
 });
 
-let newListButton2 = document.getElementById("newListButton2");
-newListButton2.addEventListener("click", () => {
-  document.querySelector("#newUser").style = "display: none";
+// let newListButton2 = document.getElementById("newListButton2");
+// newListButton2.addEventListener("click", () => {
+//   document.querySelector("#newUser").style = "display: none";
 
-  addList(document.getElementById("newListName2").value);
+//   addList(document.getElementById("newListName2").value);
 
-  myApp.save();
-  myApp.activeList += 1;
-  location.reload();
+//   myApp.save();
+//   myApp.activeList += 1;
+//   location.reload();
 
-  updateListDOM();
-  updateTaskDOM();
-});
+//   updateListDOM();
+//   updateTaskDOM();
+// });
 
 //Add task button and event listener
 let newTaskButton = document.getElementById("addTaskButton");
